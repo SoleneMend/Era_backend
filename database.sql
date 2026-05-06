@@ -98,20 +98,20 @@ events_price) VALUES
 ("Chute de Constantinople", 4, "1453", "2 jours", "Visitez une capitale. Avant, pendant, ou juste après.", "Expérience immersive avec sièges, canons et changement de propriétaire.", 16, 3, "http://localhost:3310/assets/events/MA/constantinople.png", 687),
 ("La peste noire", 4, "1347", "3 jours", "Séjour détente, très calme et étonnamment vide", "Découvrez une Europe légèrement désertée. Interaction sociale fortement déconseillée.", 6, 3, "http://localhost:3310/assets/events/MA/peste.png", 999),
 
-/* Époque contemporaine */
-("Voyage avec Christophe Colomb", 5, "1492", "10 jours", "Montez à bord d’une caravelle, cap vers les Indes. Normalement.", "Voyage garanti sans GPS. Possibilité de découvrir un continent par accident.", 12, 3, "http://localhost:3310/assets/events/EC/colomb.png", 480),
-("Léonard de Vinci peint la Joconde", 5, "1503", "2 jours", "draw me like one of your french girl", "Atelier peinture avec Léo: pose longue, résultat éternel, mystère garanti.", 8, 1, "http://localhost:3310/assets/events/EC/joconde.png", 520),
-("Observations de Galilée", 5, "1609", "2 jours", "Regardez le ciel. Remettez tout en question.", "Effet secondaire : désaccord possible avec les autorités locales.", 10, 2, "http://localhost:3310/assets/events/EC/galilee.png", 450),
-("Révolution française", 5, "1789", "3 jours", "Ambiance tendue, peuple motivé, monarchie en solde.", "Revivez les dernières heures du roi, un voyage qui vous fera probablement perdre la tête", 15, 3, "http://localhost:3310/assets/events/EC/revolution.png", 600),
-("Napoléon couronnement", 5, "1804", "2 jours", "Assistez à un couronnement. Il s’en charge lui-même.", "Vue imprenable sur l’ambition. Retour à votre époque recommandé.", 10, 2, "http://localhost:3310/assets/events/EC/napoleon.png", 550),
-
-
 /* Époque moderne */
-("Tour Eiffel inauguration", 6, "1899", "1 jour", "Découverte d’une structure métallique controversée.", "Tout le monde débat. Certains appellent ça de l’art, d’autres une erreur de calcul durable.", 20, 1, "http://localhost:3310/assets/events/EM/eiffel.png", 400),
+("Voyage avec Christophe Colomb", 5, "1492", "10 jours", "Montez à bord d’une caravelle, cap vers les Indes. Normalement.", "Voyage garanti sans GPS. Possibilité de découvrir un continent par accident.", 12, 3, "http://localhost:3310/assets/events/EM/colomb.png", 480),
+("Léonard de Vinci peint la Joconde", 5, "1503", "2 jours", "draw me like one of your french girl", "Atelier peinture avec Léo: pose longue, résultat éternel, mystère garanti.", 8, 1, "http://localhost:3310/assets/events/EM/joconde.png", 520),
+("Observations de Galilée", 5, "1609", "2 jours", "Regardez le ciel. Remettez tout en question.", "Effet secondaire : désaccord possible avec les autorités locales.", 10, 2, "http://localhost:3310/assets/events/EM/galilee.png", 450),
+("Révolution française", 5, "1789", "3 jours", "Ambiance tendue, peuple motivé, monarchie en solde.", "Revivez les dernières heures du roi, un voyage qui vous fera probablement perdre la tête", 15, 3, "http://localhost:3310/assets/events/EM/revolution.png", 600),
+("Napoléon couronnement", 5, "1804", "2 jours", "Assistez à un couronnement. Il s’en charge lui-même.", "Vue imprenable sur l’ambition. Retour à votre époque recommandé.", 10, 2, "http://localhost:3310/assets/events/EM/napoleon.png", 550),
+
+
+/* Époque contemporaine */
+("Tour Eiffel inauguration", 6, "1899", "1 jour", "Découverte d’une structure métallique controversée.", "Tout le monde débat. Certains appellent ça de l’art, d’autres une erreur de calcul durable.", 20, 1, "http://localhost:3310/assets/events/EC/eiffel.png", 400),
 ("Naufrage du Titanic", 6, "1912", "2 jours", "Un concert à vous glacer le sang", "Ambiance chic, orchestre déterminé, mouille un peu.", 12, 3, "https://media.ouest-france.fr/v1/pictures/0064d7599b070c7666451f0e52b1b5fa-2351503.jpg", 650),
-("Hiroshima/Nagasaki", 6, "1945", "1 jour", "Chapitre final d’une démonstration technologique.", "Prendre crème solaire, quelques effets secondaires attendus.", 6, 3, "http://localhost:3310/assets/events/EM/hiroshima.png", 900),
-("Woodstock Vivez le festival le plus mythique de l’histoire", 6, "1969", "3 jours", "Vivez le festival le plus mythique de l’histoire.", "Boue, musique et foule compacte : expérience immersive garantie, hygiène optionnelle.", 25, 1, "http://localhost:3310/assets/events/EM/woodstock.png", 420),
-("Apollo 11", 6, "1969", "5 jours", "Avant la Lune, pour eux, c’était loin.", "Petit pas pour l’homme, grand saut pour le tourisme spatial (très expérimental).", 6, 3, "http://localhost:3310/assets/events/EM/apollo.png", 1200),
+("Hiroshima/Nagasaki", 6, "1945", "1 jour", "Chapitre final d’une démonstration technologique.", "Prendre crème solaire, quelques effets secondaires attendus.", 6, 3, "http://localhost:3310/assets/events/EC/hiroshima.png", 900),
+("Woodstock Vivez le festival le plus mythique de l’histoire", 6, "1969", "3 jours", "Vivez le festival le plus mythique de l’histoire.", "Boue, musique et foule compacte : expérience immersive garantie, hygiène optionnelle.", 25, 1, "http://localhost:3310/assets/events/EC/woodstock.png", 420),
+("Apollo 11", 6, "1969", "5 jours", "Avant la Lune, pour eux, c’était loin.", "Petit pas pour l’homme, grand saut pour le tourisme spatial (très expérimental).", 6, 3, "http://localhost:3310/assets/events/EC/apollo.png", 1200),
 
 
 /* Époque apocalyptique */
