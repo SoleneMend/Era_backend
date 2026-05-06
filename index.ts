@@ -1,13 +1,15 @@
 import dotenv from "dotenv";
 dotenv.config();
 
-import express, { Application } from "express";
+import express from "express";
 import mysql from "mysql2";
 import cors from "cors";
 
+import type {periodsTypeArray} from "./types/periodsType";
+
 const port: number = Number(process.env.APP_PORT) || 3310;
 
-const app: Application = express();
+const app = express();
 
 // ---- App fontion ----
 
@@ -35,11 +37,36 @@ connection.connect((err) => {
 	console.log("Connexion reussie a la bdd !")
 });
 
-
 // ------------------------- Base de données - Fonction ------------------------------- //
 
 // ----- GET fonction -----
+// -> Show periods
 
+app.get("/periods", (req, res) => {
+  connection.query(`SELECT * FROM periods`, (err, rows) => {
+    if (err) throw err;
+
+    const periodsMap: periodsTypeArray = [];
+
+    (rows as any[]).forEach(row => {
+      periodsMap.push({
+        id: row.periods_id,
+        name: row.periods_name,
+        introduction: row.periods_introduction,
+        description: row.periods_description,
+        time: {
+          start: row.periods_time_start,
+          end: row.periods_time_end,
+        },
+        image: row.periods_image,
+        image_logo: row.periods_image_logo
+      })
+      
+    });
+
+    res.json(Object.values(periodsMap))
+  })
+})
 
 
 console.log("PORT =", port);
