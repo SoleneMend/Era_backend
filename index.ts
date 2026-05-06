@@ -59,7 +59,8 @@ app.get("/periods", (req, res) => {
           end: row.periods_time_end,
         },
         image: row.periods_image,
-        image_logo: row.periods_image_logo
+        image_logo: row.periods_image_logo,
+        index_name: row.periods_index_name
       })
       
     });
