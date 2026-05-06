@@ -11,6 +11,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 import type {periodsTypeArray} from "./types/periodsType";
+import type {eventsTypeArray} from "./types/eventsType";
 
 const port: number = Number(process.env.APP_PORT) || 3310;
 
@@ -47,8 +48,8 @@ connection.connect((err) => {
 // ------------------------- Base de données - Fonction ------------------------------- //
 
 // ----- GET fonction -----
-// -> Show periods
 
+// -> Show periods
 app.get("/periods", (req, res) => {
   connection.query(`SELECT * FROM periods`, (err, rows) => {
     if (err) throw err;
@@ -76,6 +77,39 @@ app.get("/periods", (req, res) => {
   })
 })
 
+// -> Show events
+app.get("/events", (req, res) => {
+  connection.query(`SELECT e.*, p.periods_name, p.periods_id FROM events AS e JOIN periods AS p ON p.periods_id = e.events_periods_id`, (err, rows) => {
+    if (err) throw err;
+
+    const eventsMap: eventsTypeArray = [];
+
+    (rows as any[]).forEach(row => {
+      eventsMap.push({
+        id: row.events_id,
+        name: row.events_name,
+        introduction: row.events_introduction,
+        description: row.events_description,
+        max_join : row.events_max_join,
+        risque_level : row.events_risque_level,
+        periods : {
+            id : row.periods_id,
+            name : row.periods_name
+        },
+        time : row.events_time,
+        time_trip : row.events_time_trip,
+        images : row.events_image,
+        price : row.events_price
+      })
+      
+    });
+
+    res.json(Object.values(eventsMap))
+
+  })
+})
+
+// -> Show events by periods id
 
 console.log("PORT =", port);
 
