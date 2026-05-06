@@ -10,8 +10,8 @@ import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-import type {periodsTypeArray} from "./types/periodsType";
-import type {eventsTypeArray} from "./types/eventsType";
+import type { periodsTypeArray } from "./types/periodsType";
+import type { eventsTypeArray } from "./types/eventsType";
 
 const port: number = Number(process.env.APP_PORT) || 3310;
 
@@ -24,9 +24,8 @@ app.use(cors());
 app.use("/assets", express.static(path.join(__dirname, "assets")));
 
 app.get("/", (req, res) => {
-  res.send("Hello World!");
+	res.send("Hello World!");
 });
-
 
 /* -------------------- Base de donnée - Connection --------------------- */
 
@@ -35,14 +34,14 @@ const connection = mysql.createConnection({
 	user: process.env.DB_USER,
 	password: process.env.DB_PASSWORD,
 	database: process.env.DB_NAME,
-})
+});
 
 connection.connect((err) => {
-	if(err) {
-		console.error("Erreur de connection : "+ err.stack)
+	if (err) {
+		console.error("Erreur de connection : " + err.stack);
 		return;
 	}
-	console.log("Connexion reussie a la bdd !")
+	console.log("Connexion reussie a la bdd !");
 });
 
 // ------------------------- Base de données - Fonction ------------------------------- //
@@ -51,65 +50,97 @@ connection.connect((err) => {
 
 // -> Show periods
 app.get("/periods", (req, res) => {
-  connection.query(`SELECT * FROM periods`, (err, rows) => {
-    if (err) throw err;
+	connection.query(`SELECT * FROM periods`, (err, rows) => {
+		if (err) throw err;
 
-    const periodsMap: periodsTypeArray = [];
+		const periodsMap: periodsTypeArray = [];
 
-    (rows as any[]).forEach(row => {
-      periodsMap.push({
-        id: row.periods_id,
-        name: row.periods_name,
-        introduction: row.periods_introduction,
-        description: row.periods_description,
-        time: {
-          start: row.periods_time_start,
-          end: row.periods_time_end,
-        },
-        image: row.periods_image,
-        image_logo: row.periods_image_logo,
-        index_name: row.periods_index_name
-      })
-      
-    });
+		(rows as any[]).forEach((row) => {
+			periodsMap.push({
+				id: row.periods_id,
+				name: row.periods_name,
+				introduction: row.periods_introduction,
+				description: row.periods_description,
+				time: {
+					start: row.periods_time_start,
+					end: row.periods_time_end,
+				},
+				image: row.periods_image,
+				image_logo: row.periods_image_logo,
+				index_name: row.periods_index_name,
+			});
+		});
 
-    res.json(Object.values(periodsMap))
-  })
-})
+		res.json(Object.values(periodsMap));
+	});
+});
 
 // -> Show events
 app.get("/events", (req, res) => {
-  connection.query(`SELECT e.*, p.periods_name, p.periods_id FROM events AS e JOIN periods AS p ON p.periods_id = e.events_periods_id`, (err, rows) => {
-    if (err) throw err;
+	connection.query(
+		`SELECT e.*, p.periods_name, p.periods_id FROM events AS e JOIN periods AS p ON p.periods_id = e.events_periods_id`,
+		(err, rows) => {
+			if (err) throw err;
 
-    const eventsMap: eventsTypeArray = [];
+			const eventsMap: eventsTypeArray = [];
 
-    (rows as any[]).forEach(row => {
-      eventsMap.push({
-        id: row.events_id,
-        name: row.events_name,
-        introduction: row.events_introduction,
-        description: row.events_description,
-        max_join : row.events_max_join,
-        risque_level : row.events_risque_level,
-        periods : {
-            id : row.periods_id,
-            name : row.periods_name
-        },
-        time : row.events_time,
-        time_trip : row.events_time_trip,
-        images : row.events_image,
-        price : row.events_price
-      })
-      
-    });
+			(rows as any[]).forEach((row) => {
+				eventsMap.push({
+					id: row.events_id,
+					name: row.events_name,
+					introduction: row.events_introduction,
+					description: row.events_description,
+					max_join: row.events_max_join,
+					risque_level: row.events_risque_level,
+					periods: {
+						id: row.periods_id,
+						name: row.periods_name,
+					},
+					time: row.events_time,
+					time_trip: row.events_time_trip,
+					images: row.events_image,
+					price: row.events_price,
+				});
+			});
 
-    res.json(Object.values(eventsMap))
-
-  })
-})
+			res.json(Object.values(eventsMap));
+		},
+	);
+});
 
 // -> Show events by periods id
+app.get("/events/:id", (req, res) => {
+	const period_id = req.params.id;
+
+	const request = `SELECT e.*, p.periods_name, p.periods_id FROM events AS e JOIN periods AS p ON p.periods_id = e.events_periods_id WHERE p.periods_id = ?`;
+
+	connection.query(request, [period_id], (err, rows) => {
+		if (err) throw err;
+
+		const eventsMap: eventsTypeArray = [];
+
+		(rows as any[]).forEach((row) => {
+			eventsMap.push({
+				id: row.events_id,
+				name: row.events_name,
+				introduction: row.events_introduction,
+				description: row.events_description,
+				max_join: row.events_max_join,
+				risque_level: row.events_risque_level,
+				periods: {
+					id: row.periods_id,
+					name: row.periods_name,
+				},
+				time: row.events_time,
+				time_trip: row.events_time_trip,
+				images: row.events_image,
+				price: row.events_price,
+			});
+		});
+
+		res.json(Object.values(eventsMap));
+	});
+});
 
 console.log("PORT =", port);
 
