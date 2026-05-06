@@ -12,7 +12,7 @@ CREATE TABLE periods (
     periods_description TEXT NOT NULL,
     periods_image TEXT,
     periods_image_logo TEXT,
-    periods_index_name VARCHAR(100) NOT NULL
+    periods_index_name VARCHAR(100) NOT NULL,
     PRIMARY KEY (periods_id)
 );
 
