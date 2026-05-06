@@ -49,7 +49,7 @@ CREATE TABLE events (
     events_risque_level INT NOT NULL,
     events_image TEXT NOT NULL,
     events_price FLOAT NOT NULL,
-    PRIMARY KEY (events_id)
+    PRIMARY KEY (events_id),
     CONSTRAINT fk_periods_events
         FOREIGN KEY (events_periods_id)
         REFERENCES periods(periods_id)
